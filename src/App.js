@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import Simpson from "./component/simpson/simpson";
 let simpsons = [
     {
         name: 'Bart',
@@ -40,9 +41,9 @@ let simpsons = [
 function App() {
   return (
     <div>
-
-            <Simpson/>
-
+        {
+            simpsons.map(value => <Simpson item={value}/>)
+        }
     </div>
   );
 }
