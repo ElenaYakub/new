@@ -41,7 +41,7 @@ function App() {
   return (
     <div>
 
-            <Simpsons/>
+            <Simpson/>
 
     </div>
   );
