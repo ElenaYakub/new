@@ -1,12 +1,12 @@
 export default function Simpson(props) {
-    let{item}=props;
-
+    let {item} = props;
+    let {name, surname, age, photo, info} = item;
     return(
         <div>
-            <h2>{item.name} {item.surname}</h2>
-            <img src={item.photo}
+            <h2>{name} {surname}, age - {age}</h2>
+            <img src={photo}
                  alt=""/>
-            <div>{item.info}</div>
+            <div>{info}</div>
         </div>
     );
 }
