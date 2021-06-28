@@ -2,9 +2,8 @@ import {useEffect, useState} from "react";
 
 export default function Users() {
 
-    let state = useState([]);
-    let usersList = state[0];
-    let setUsersList = state[1];
+    let [usersList, setUsersList] = useState([]);
+
 
     useEffect(() => {
         fetch('https://jsonplaceholder.typicode.com/users')
@@ -20,8 +19,10 @@ return(
 <div>
     {
 usersList
-    .map(value => <div>lkjhgf</div>)
+    .map(value => <div>{value.id} - {value.name}</div>)
+
     }
+
 </div>
 
 );
