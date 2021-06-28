@@ -11,7 +11,7 @@ export default function Users() {
             .then(value => value.json())
             .then(response => {
                 console.log(response);
-                serUsersList(response);
+                setUsersList(response);
             });
     }, []);
 
