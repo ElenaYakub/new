@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import Simpson from "./component/simpson/simpson";
+import Simpson from "./component/simpson/Simpson";
 let simpsons = [
     {
         name: 'Bart',
@@ -40,12 +40,11 @@ let simpsons = [
 ];
 function App() {
   return (
-    <div>
+    <div className={'wrap'}>
         {
             simpsons.map(value => <Simpson item={value}/>)
         }
     </div>
   );
 }
-
 export default App;
