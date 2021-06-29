@@ -15,8 +15,8 @@ export default function App() {
 
    }, []);
 
-   function selectUser() {
-       console.log('i am fn from app js');
+   function selectUser(id) {
+       console.log('i am fn from app js and you choose user with id', id);
 
    }
 
