@@ -6,7 +6,8 @@ import Users from "./components/users/Users";
 export default function App() {
 
    let[users, setUsers] = useState([]);
-   useEffect(() => {
+
+   useEffect( () => {
        getUsers().then(response => {
            setUsers(response.data);
 
@@ -14,9 +15,15 @@ export default function App() {
 
    }, []);
 
+   // function selectUser(id) {
+   //     console.log('i am fn from app js and you choose user with id', id);
+   //
+   // }
+
     return (
         <div>
             <Users items={users}/>
+            {/*<Users items={users} selectUser={selectUser}/>*/}
 
         </div>
     );
