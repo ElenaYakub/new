@@ -15,15 +15,14 @@ export default function App() {
 
    }, []);
 
-   // function selectUser(id) {
-   //     console.log('i am fn from app js and you choose user with id', id);
-   //
-   // }
+   function selectUser() {
+       console.log('i am fn from app js');
+
+   }
 
     return (
         <div>
-            <Users items={users}/>
-            {/*<Users items={users} selectUser={selectUser}/>*/}
+            <Users items={users} selectUser={selectUser}/>
 
         </div>
     );

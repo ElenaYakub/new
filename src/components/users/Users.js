@@ -2,14 +2,13 @@ import User from "./user";
 
 
 export default function Users(props){
-    let {items} = props;
-    console.log(items);
+    let {items,selectUser} = props;
+
 
 return(
 <div>
     {
-        items.map(u => <User item ={u}/>)
-            // <User key={u.id} item={u} selectUser={selectUser}/>)
+        items.map(u => <User key={u.id} item={u} selectUser={selectUser}/>)
     }
 </div>
 );
