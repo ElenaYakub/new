@@ -1,39 +1,46 @@
-import UserDetails from "./components/user-details/UserDetails";
-import {getUser, getUsers} from "./servises/API";
-import {useEffect, useState} from "react";
-import Users from "./components/users/Users";
 
+
+
+
+// function PostDetails(props) {
+//     return null;
+// }
+// PostDetails.propTypes = {item: PropTypes.any};
+
+
+import {useEffect, useState} from "react";
+import {getPost, getPosts} from "./servises/API";
+import Posts from "./components/posts/Posts";
+import PostDetails from "./components/post-details/PostDetails";
 
 export default function App() {
 
-   let[users, setUsers] = useState([]);
+   let[posts, setPosts] = useState([]);
 
-   let [userDetails, setUserDetails] = useState(null);
+   let [postDetails, setPostDetails] = useState(null);
 
    useEffect( () => {
-       getUsers().then(response => {
-           setUsers(response.data);
+       getPosts().then(response => {
+           setPosts(response.data);
 
        });
 
    }, []);
 
-   function selectUser(id) {
+   function selectPost(id) {
        console.log(id);
-       getUser(id).then(({data}) => {
-
-           setUserDetails(data);
-
+       getPost(id).then(({data}) => {
+           setPostDetails(data);
        });
    }
 
     return (
         <div>
-            <Users items={users} selectUser={selectUser}/>
+            <Posts items={posts} selectPost={selectPost}/>
 <hr/>
 
             {
-                userDetails && <UserDetails item={userDetails}/>
+                postDetails && <PostDetails item={postDetails}/>
             }
 
 
