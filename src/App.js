@@ -1,4 +1,7 @@
-
+import UserDetails from "./components/user-details/UserDetails";
+import {getUser, getUsers} from "./servises/API";
+import {useEffect, useState} from "react";
+import Users from "./components/users/Users";
 
 
 export default function App() {
