@@ -1,9 +1,14 @@
-export default function UserDetails({item}) {
-return(
+import Users from "./Users";
+
+export default function User(props){
+let {item, selectUser}=props;
+    return(
 <div>
-    {
-   item.username
-      }
+    {item.id} - {item.name}
+    -
+    <button onClick={ () => {
+        selectUser(item.id);
+        }}>click me</button>
 
 </div>
 );

@@ -21,7 +21,8 @@ export default function App() {
    function selectUser(id) {
        console.log(id);
        getUser(id).then(({data}) => {
-           console.log(data);
+
+           setUserDetails(data);
 
        });
    }
