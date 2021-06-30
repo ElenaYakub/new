@@ -1,11 +1,11 @@
-import {useEffect, useState} from 'react';
-import {getUsers} from "./servises/API";
-import Users from "./components/users/Users";
+
 
 
 export default function App() {
 
    let[users, setUsers] = useState([]);
+
+   let [userDetails, setUserDetails] = useState(null);
 
    useEffect( () => {
        getUsers().then(response => {
@@ -16,13 +16,22 @@ export default function App() {
    }, []);
 
    function selectUser(id) {
-       console.log('i am fn from app js and you choose user with id', id);
+       console.log(id);
+       getUser(id).then(({data}) => {
+           console.log(data);
 
+       });
    }
 
     return (
         <div>
             <Users items={users} selectUser={selectUser}/>
+<hr/>
+
+            {
+                userDetails && <UserDetails item={userDetails}/>
+            }
+
 
         </div>
     );

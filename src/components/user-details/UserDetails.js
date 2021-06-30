@@ -1,10 +1,10 @@
 export default function UserDetails({item}) {
-return(
+return (
 <div>
     {
-   item.username
-      }
+        item.username
+    }
 
-</div>
+        </div>
 );
 }
