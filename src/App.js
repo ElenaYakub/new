@@ -1,26 +1,19 @@
-import {useState} from "react";
+import {useReducer} from "react";
+
+function reducer(state, action) {
+    return state;
+}
 
 export default function App(){
-    let [a, setA] = useState(0);
-    let [b, setB] = useState(0);
+    let [state, dispatch] = useReducer(reducer, {a:0, b: 0});
+console.log(state);
 
 return(
 <div>
-    <div>
-        <h2>A - {a}</h2>
-    <button onClick={()=>{
-        setA(++a);
-    }}>inc A
-    </button>
+    <button onClick={() => dispatch(100)}> click me A</button>
+    <button onClick={() => dispatch(100)}> click me B</button>
     </div>
 
-    <div>
-        <h2>B - {b}</h2>
-    <button onClick={()=>{
-        setB(++b);
-    }}>inc B
-    </button>
-    </div>
-</div>
+
 );
 }
