@@ -1,28 +1,22 @@
-import {useReducer} from "react";
 
-function reducer(state, action) {
-    switch (action.type) {
-        case 'INC_A':
-            console.log('a incs');
-            return {...state, a: state.a + action.payload};
-    case 'INC_B':
-        return {...state, b: state.b + action.payload};
-        default:
-            return {...state};
-}
-
-}
 
 export default function App(){
-    let [state, dispatch] = useReducer(reducer, {a:0, b: 0});
-console.log(state);
-
 return(
+    <Router>
+
 <div>
-    <button onClick={() => dispatch({type:'INC_A', payload: 1})}> click me A {state.a}</button>
-    <button onClick={() => dispatch({type:'INC_B', payload: 2})}> click me B {state.b}</button>
-    </div>
+    <div><a href="/users">users page</a></div>
+    <div><a href="/posts">posts page</a></div>
 
+    <Route path={'/users'} render={() => {
+        return <div>this is users page</div>;
+    }}/>
 
+    <Route path={'/posts'} render={() => {
+        return <div>this is users page</div>;
+    }}/>
+
+</div>
+    </Router>
 );
 }
