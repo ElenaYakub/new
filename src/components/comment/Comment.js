@@ -1,4 +1,4 @@
-export default function User({item}){
+export default function Comment({item}){
     return(
         <div>
             {item.name}

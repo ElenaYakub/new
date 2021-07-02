@@ -1,10 +1,7 @@
-import Posts from "./Posts";
-
 export default function Post({item}){
     return(
         <div>
-            {item.id} - {item.title}
-
+            {item.title}
 
         </div>
     );

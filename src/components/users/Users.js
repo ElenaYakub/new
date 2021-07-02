@@ -1,23 +1,18 @@
-import User from "./user";
+
+import {useEffect, useState} from "react";
+import {getUsers} from "../../servises/API";
+import User from "../user/User";
 
 export default function Users(){
-    console.log();
-return(
-<div>Users page
-</div>
-);
-}
 
+    let [users, setUsers] = useState([]);
+    useEffect(() => {
+        getUsers().then(value => setUsers([...value.data]));
+    }, []);
 
-export default function Users(props){
-    let {items,selectUser} = props;
-
-
-    return(
+    return (
         <div>
-            {
-                items.map(u => <User key={u.id} item={u} selectUser={selectUser}/>)
-            }
+            {users.map(value => <User key={value.id} item={value}/>)}
         </div>
     );
 }

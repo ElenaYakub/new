@@ -1,20 +1,16 @@
-import Post from "./Post";
+import {getPosts} from "../../servises/APIpost";
+import {useEffect, useState} from "react";
+import Post from "../post/Post";
 
 export default function Posts(){
-return(
-<div>Posts page
-</div>
-);
+        let [posts, setPosts] = useState([]);
+        useEffect(() => {
+            getPosts().then(value => setPosts([...value.data]));
+        }, []);
 
-    export default function Posts(props){
-        let {items,selectPost} = props;
-
-
-        return(
-            <div>
-                {
-                    items.map(u => <Post key={u.id} item={u} selectPost={selectPost}/>)
-                }
-            </div>
-        );
-    }
+    return (
+        <div>
+            {posts.map(value => <Post key={value.id} item={value}/>)}
+        </div>
+    );
+}
