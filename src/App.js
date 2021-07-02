@@ -1,9 +1,16 @@
 import {useReducer} from "react";
 
 function reducer(state, action) {
-    console.log('reducer works' , action)
+    switch (action.type) {
+        case 'INC_A':
+            console.log('a incs');
+            return {...state, a: state.a + action.payload};
+    case 'INC_B':
+        return {...state, b: state.b + action.payload};
+        default:
+            return {...state};
+}
 
-    return state;
 }
 
 export default function App(){
@@ -12,8 +19,8 @@ console.log(state);
 
 return(
 <div>
-    <button onClick={() => dispatch({type:'INC_A', playload:1})}> click me A</button>
-    <button onClick={() => dispatch({type:'B', playload:2})}> click me B</button>
+    <button onClick={() => dispatch({type:'INC_A', payload: 1})}> click me A {state.a}</button>
+    <button onClick={() => dispatch({type:'INC_B', payload: 2})}> click me B {state.b}</button>
     </div>
 
 
