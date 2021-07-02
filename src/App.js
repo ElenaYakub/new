@@ -1,12 +1,12 @@
-import {BrowserRouter as Router, Route} from "react-router-dom";
+import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 
 export default function App(){
 return(
     <Router>
 
 <div>
-    <div><a href="/users">users page</a></div>
-    <div><a href="/posts">posts page</a></div>
+    <div><Link to="/users">users page</Link></div>
+    <div><Link to="/posts">posts page</Link></div>
 
     <Route path={'/users'} render={() => {
         return <div>this is users page</div>;
