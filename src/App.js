@@ -1,3 +1,4 @@
+import {BrowserRouter as Router, Route} from "react-router-dom";
 
 export default function App(){
 return(
@@ -12,7 +13,7 @@ return(
     }}/>
 
     <Route path={'/posts'} render={() => {
-        return <div>this is users page</div>;
+        return <div>this is posts page</div>;
     }}/>
 
 </div>
