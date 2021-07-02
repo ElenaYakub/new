@@ -10,7 +10,7 @@ return(
         <h2>A - {a}</h2>
     <button onClick={()=>{
         setA(++a);
-    }}>inc A - {a}
+    }}>inc A
     </button>
     </div>
 
@@ -18,7 +18,7 @@ return(
         <h2>B - {b}</h2>
     <button onClick={()=>{
         setB(++b);
-    }}>inc B - {b}
+    }}>inc B
     </button>
     </div>
 </div>
