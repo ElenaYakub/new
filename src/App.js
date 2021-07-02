@@ -8,12 +8,15 @@ return(
     <Router>
 
 <div>
+    <div><Link to="/">home page</Link></div>
     <div><Link to="/users">users page</Link></div>
     <div><Link to="/posts">posts page</Link></div>
     <div><Link to="/comments">comments page</Link></div>
 
-    <Route path={'/users'} render={() => {
-        return <Users/>;
+    <Route path={'/'} exact render={() => {return <div>home</div>;}}/>
+    <Route path={'/users'} render={(props) => {
+        console.log(props);
+        return <Users {...props}/>; //{...props} history={}
     }}/>
 
     <Route path={'/posts'} component={Posts}/>
