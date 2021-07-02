@@ -1,6 +1,8 @@
 import {useReducer} from "react";
 
 function reducer(state, action) {
+    console.log('reducer works' , action)
+
     return state;
 }
 
@@ -10,8 +12,8 @@ console.log(state);
 
 return(
 <div>
-    <button onClick={() => dispatch(100)}> click me A</button>
-    <button onClick={() => dispatch(100)}> click me B</button>
+    <button onClick={() => dispatch({type:'INC_A', playload:1})}> click me A</button>
+    <button onClick={() => dispatch({type:'B', playload:2})}> click me B</button>
     </div>
 
 
