@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {getComments} from "../../servises/APIcomment";
+import {getComments} from "../../services/APIcomment";
 import Comment from "../comment/Comment";
 
 

@@ -1,4 +1,4 @@
-import {getPosts} from "../../servises/APIpost";
+import {getPosts} from "../../services/APIpost";
 import {useEffect, useState} from "react";
 import Post from "../post/Post";
 

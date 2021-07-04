@@ -1,6 +1,6 @@
 
 import {useEffect, useState} from "react";
-import {getUsers} from "../../servises/API";
+import {getUsers} from "../../services/API";
 import User from "../user/User";
 
 export default function Users(){

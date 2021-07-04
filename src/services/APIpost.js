@@ -5,4 +5,6 @@ let axiosInstance = axios.create({
 });
  const getPosts = () => axiosInstance('');
  const getPost = (id) => axiosInstance('/' + id);
+
+
  export {getPosts, getPost};
