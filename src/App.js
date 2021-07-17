@@ -1,73 +1,110 @@
-
-import logo from './logo.svg';
+import React, {Fragment} from 'react'
 import './App.css';
 
-import {useSelector, useDispatch} from "react-redux";
-import {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect, useState} from "react";
+import {
+    setLoadingFalse,
+    setLoadingTrue,
+    addTodos,
+    pushTodo,
+} from "./redux/actionCreators";
 
-// basic concepts (flux, action, dispatch, reducer, context)
+const CreateTodoForm = ({ onSubmit }) => {
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
-// counter example
+        if(!title || !description || isLoading) return;
 
-// fetch data from json placeholder (last priority)
-
-
-const SomeNestedChildComponent = () => {
-    const counter = useSelector(({counterValue}) => counterValue);
-    const posts = useSelector((state) => state.posts);
-    console.log(counter, 'sadsad')
+        try {
+            setIsLoading(true)
+            await onSubmit(title, description);
+            setTitle('')
+            setDescription('')
+        } catch (e) {
+            console.log(e)
+        } finally {
+            setIsLoading(false)
+        }
+    }
 
     return (
-        <header className="App-header">
-            <h1>{counter}</h1>
-
-            <img src={logo} className="App-logo" alt="logo"/>
-            {posts.map(post => (
-                <div key={post.id}>
-                    <p>{post.title}</p>
-                    <p>{post.body}</p>
-                </div>
-            ))}
-        </header>
+        <form onSubmit={handleSubmit}>
+            <input type="text" value={title} onChange={({target: {value}}) => setTitle(value)} placeholder="todo title" />
+            <br/>
+            <br/>
+            <input type="text" value={description} onChange={({target: {value}}) => setDescription(value)} placeholder="todo description" />
+            <br/>
+            <br/>
+            <button type="submit" disabled={!title || !description || isLoading}>create todo</button>
+        </form>
     )
 }
 
-const SomeChildComponent = () => {
+const Todos = ({todos, isLoading}) => {
+    if(isLoading) return <h1>LOADING...</h1>
 
     return (
-        <SomeNestedChildComponent/>
+        <div>
+            {todos.map(todo => (
+                <Fragment key={todo.id}>
+                    <div>{todo.title}</div>
+                    <div>{todo.description}</div>
+                    <div>Created At: {new Date(todo.createdAt).toDateString()}</div>
+                    <div>Status {todo.completed.toString()}</div>
+                    <hr/>
+                </Fragment>
+            ))}
+        </div>
     )
 }
 
 function App() {
+    const { todos, todosLoading } = useSelector(store => store.todosReducer);
     const dispatch = useDispatch();
 
-    const fetchPosts = async () => {
-        // const data = await (await fetch('https://jsonplaceholder.typicode.com/posts')).json()
+    const fetchTodos = async () => {
+        try {
+            dispatch(setLoadingTrue())
+            const resp = await fetch('http://localhost:8888/get-todos');
+            const data = await resp.json();
 
-        const response = await fetch('https://jsonplaceholder.typicode.com/posts');
-        const data = await response.json()
-
-        dispatch({
-            type: 'SET_POSTS',
-            payload: data,
-        })
+            dispatch(addTodos(data))
+        } catch(e) {
+            console.log(e)
+        } finally {
+            dispatch(setLoadingFalse())
+        }
     }
 
     useEffect(() => {
-        fetchPosts()
+        fetchTodos();
     }, [])
+
+    const onTodoCreate = async (title, description) => {
+        if(!title || !description) return;
+
+        console.log(JSON.stringify({title, description}))
+
+        const resp = await fetch('http://localhost:8888/create-todo', {
+            method: 'POST',
+            body: JSON.stringify({title, description}),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        const data = await resp.json();
+
+        dispatch(pushTodo(data))
+    }
 
     return (
         <div className="App">
-            <button
-                onClick={() => {
-                    dispatch({type: 'INC', payload: 123})
-                }}
-            >
-                inc
-            </button>
-            <SomeChildComponent/>тзm
+            <CreateTodoForm onSubmit={onTodoCreate} />
+            <Todos todos={todos} isLoading={todosLoading} />
         </div>
     );
 }
